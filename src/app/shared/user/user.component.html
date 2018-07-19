@@ -1,0 +1,59 @@
+<!-- <ng-template #success let-subscription="user$ | async">
+	<div *ngFor="let user of subscription">
+		<div class="card user col-md-10 col-lg-6">
+			<ng-container *ngIf="user != null">
+				<h1>
+					<p>Name: {{user.name}}</p>
+				</h1>
+
+				<p>Email: {{user.email}}</p>
+				<p>Phone number: {{user.phone}}</p>
+				<div class="address jumbotron"> Adress:
+					<p>{{user.address.street}}</p>
+					<p>{{user.address.suite}}</p>
+					<p>{{user.address.city}}</p>
+					<p>{{user.address.zipcode}}</p>
+				</div>
+				<p>Emplyed at: {{user.company.name}}</p>
+				<p>See my work at: {{user.website}}</p>
+			</ng-container>
+			<ng-container *ngIf="user == undefined">
+				<h2>No such user</h2>
+			</ng-container>
+		</div>
+	</div>
+</ng-template>
+
+
+<ng-container *ngTemplateOutlet="user ? success : fail"></ng-container> -->
+
+<ng-template #fail>No such thing</ng-template>
+
+<ng-container *ngIf="user$ | async as users; else fail">
+	<ng-container *ngFor="let user of users">
+
+		<ng-container *ngTemplateOutlet="user.name.length > 0 ? success : fail"></ng-container>
+
+		<ng-template #success>
+			<div class="card user col-md-10 col-lg-6">
+
+				<h1>
+					<p>Name: {{user.name}}</p>
+				</h1>
+
+				<p>Email: {{user.email}}</p>
+				<p>Phone number: {{user.phone}}</p>
+				<div class="address jumbotron"> Adress:
+					<p>{{user.address.street}}</p>
+					<p>{{user.address.suite}}</p>
+					<p>{{user.address.city}}</p>
+					<p>{{user.address.zipcode}}</p>
+				</div>
+				<p>Emplyed at: {{user.company.name}}</p>
+				<p>See my work at: {{user.website}}</p>
+			</div>
+		</ng-template>
+
+
+	</ng-container>
+</ng-container>

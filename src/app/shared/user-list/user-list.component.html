@@ -1,0 +1,6 @@
+
+<div class="users col-md-10 col-lg-6">
+	<div class="card user jumbotron" *ngFor="let user of users$ | async">
+		<h3><a href="#" routerLink="/user/{{user.id}}" >{{user.name}}</a></h3>
+	</div>
+</div>

@@ -1,0 +1,17 @@
+
+<div class="posts" class="col-md-10 col-lg-6">
+	<div *ngFor="let post of (posts | async)?.slice(0, nOfPostsToShow)" class="post card jumbotron">
+		<a routerLink="/user/{{post.userId}}">{{_getUser(post.userId)}}</a>
+		<p class="title">{{post.title}}</p>
+		<p class="text">{{post.body}}</p>
+
+		<app-comment *ngIf="showComments[post.id]" [toShow]="showComments[post.id]" [postId]="post.id" ></app-comment>
+		<button (click)="expand(post.id)" class="btnDrop btn btn-info button">
+			<span [ngClass]="{'glyphicon glyphicon-eye-close': showComments[post.id], 'glyphicon glyphicon-eye-open': !showComments[post.id]}"></span>
+		</button>
+	</div>
+
+	<div *ngIf="nOfPostsToShow < nOfPostsMax" class="button" (click)="loadMore()" >
+		<button class="btn btn-primary">Load More...</button>
+	</div>
+</div>
